@@ -4,6 +4,13 @@ provider "aws" {
   region = var.aws_region
 }
 
+resource "aws_instance" "new_ec2" {
+
+ami = "ami-03caa3f860895f82e"
+type = "t3.micro"
+
+}
+
 resource "aws_dynamodb_table" "tfc_example_table" {
   name = var.db_table_name
 
