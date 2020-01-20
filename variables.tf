@@ -1,11 +1,11 @@
 variable "aws_region" {
   type    = string
-  default = "ap-northeast-1"
+  default = "us-west-1"
 }
 
 variable "db_table_name" {
   type    = string
-  default = "TableMy"
+  default = "exampleTable"
 }
 
 variable "db_read_capacity" {
