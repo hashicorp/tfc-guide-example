@@ -21,3 +21,11 @@ variable "db_write_capacity" {
 variable "tag_user_name" {
   type = string
 }
+
+variable "product_team" {
+  type = string
+}
+
+variable "is_production" {
+  type = string
+}
