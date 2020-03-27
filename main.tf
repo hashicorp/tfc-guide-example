@@ -18,5 +18,6 @@ resource "aws_dynamodb_table" "tfc_example_table" {
 
   tags = {
     user_name = var.tag_user_name
+    product_team = var.product_team
   }
 }
