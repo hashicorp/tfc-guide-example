@@ -4,7 +4,7 @@ provider "aws" {
   region = var.aws_region
 }
 
-resource "aws_dynamodb_table" "tfc_example_table" {
+resource "aws_dynamodb_table" "tfc_daniel_table" {
   name = var.db_table_name
 
   read_capacity  = var.db_read_capacity
@@ -19,4 +19,4 @@ resource "aws_dynamodb_table" "tfc_example_table" {
   tags = {
     user_name = var.tag_user_name
   }
-}
+
