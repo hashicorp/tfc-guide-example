@@ -4,8 +4,10 @@ provider "aws" {
   region = var.aws_region
 }
 
+resource "random_pet" "table_name" {}
+
 resource "aws_dynamodb_table" "tfc_example_table" {
-  name = "${var.db_table_name}-${formatdate("YYYYMMDDhhmmss", timestamp())}"
+  name = "${var.db_table_name}-${random_pet.table_name.id}"
 
   read_capacity  = var.db_read_capacity
   write_capacity = var.db_write_capacity
