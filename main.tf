@@ -4,6 +4,10 @@ provider "aws" {
   region = var.aws_region
 }
 
+provider "random" {
+  version = "2.2"
+}
+
 resource "random_pet" "table_name" {}
 
 resource "aws_dynamodb_table" "tfc_example_table" {
