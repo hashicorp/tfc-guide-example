@@ -18,7 +18,7 @@ resource "aws_dynamodb_table" "tfc_example_table" {
   hash_key       = "UUID"
 
   attribute {
-    name = "UID"
+    name = "UUID"
     type = "S"
   }
 
