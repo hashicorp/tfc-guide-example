@@ -1,6 +1,6 @@
 provider "aws" {
   version = "2.33.0"
-  profile = "default"
+  profile = "AWS_ACCESS_KEY_ID & AWS_SECERET_ACCESS_KEY  "
   region = var.aws_region
 }
 
