@@ -1,12 +1,12 @@
 provider "aws" {
-    access_key = ""
-    secret_key = ""
-    region = "us-east-2"
+  access_key = "AKIAIKQQL3KJ6BYTDXMQ"
+  secret_key = " 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"
+  region     = "ap-south-1"
 }
 
 ## Create VPC ##
 resource "aws_vpc" "terraform-vpc" {
-  cidr_block       = "172.16.0.0/16"
+  cidr_block           = "172.16.0.0/16"
   enable_dns_hostnames = true
   tags = {
     Name = "terraform-demo-vpc"
@@ -62,8 +62,8 @@ output "aws_security_gr_id" {
 
 ## Create Subnets ##
 resource "aws_subnet" "terraform-subnet_1" {
-  vpc_id     = "${aws_vpc.terraform-vpc.id}"
-  cidr_block = "172.16.10.0/24"
+  vpc_id            = "${aws_vpc.terraform-vpc.id}"
+  cidr_block        = "172.16.10.0/24"
   availability_zone = "us-east-2a"
 
   tags = {
@@ -76,18 +76,18 @@ output "aws_subnet_subnet_1" {
 }
 
 resource "aws_instance" "terraform_wapp" {
-    ami = "ami-0e38b48473ea57778"
-    instance_type = "t2.micro"
-    vpc_security_group_ids =  [ "${aws_security_group.terraform_private_sg.id}" ]
-    subnet_id = "${aws_subnet.terraform-subnet_1.id}"
-    key_name               = "terraform-demo"
-    count         = 1
-    associate_public_ip_address = true
-    tags = {
-      Name              = "terraform_ec2_wapp_awsdev"
-      Environment       = "development"
-      Project           = "DEMO-TERRAFORM"
-    }
+  ami                         = "ami-0e38b48473ea57778"
+  instance_type               = "t2.micro"
+  vpc_security_group_ids      = ["${aws_security_group.terraform_private_sg.id}"]
+  subnet_id                   = "${aws_subnet.terraform-subnet_1.id}"
+  key_name                    = "terraform-demo"
+  count                       = 1
+  associate_public_ip_address = true
+  tags = {
+    Name        = "terraform_ec2_wapp_awsdev"
+    Environment = "development"
+    Project     = "DEMO-TERRAFORM"
+  }
 }
 
-output "instance_id_list"     { value = ["${aws_instance.terraform_wapp.*.id}"] }
+output "instance_id_list" { value = ["${aws_instance.terraform_wapp.*.id}"] }
