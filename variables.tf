@@ -9,7 +9,7 @@ variable "subnet_cidr"{
 	default = ["190.160.1.0/24","190.160.2.0/24","190.160..0/24"] 
 }
 #variabl "azs"{
-#	type= "list"
+#	type= list(string)
 #	default = ["ap-south-1a","ap-south-1b","ap-south-1c"] 
 #}
 
