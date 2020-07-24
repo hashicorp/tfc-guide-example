@@ -21,3 +21,10 @@ variable "db_write_capacity" {
 variable "tag_user_name" {
   type = string
 }
+
+variable "a_new_variable"{
+  default  = "nothing"
+}
+
+
+#this is test text for github
