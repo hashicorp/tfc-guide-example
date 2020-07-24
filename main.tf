@@ -1,12 +1,10 @@
 provider "aws" {
   access_key = "AKIATCINKSEDYRG5CCOB"
   secret_key = "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"
-  region     = "$var.region"
+  region     = "${var.region}"
 }
-
-## Create VPC ##
 resource "aws_vpc" "main" {
-  cidr_block = "$var.vpc_cidr"
+  cidr_block = "${var.vpc_cidr}"
   instance_tenancy ="default"
   
   tags = {
@@ -15,13 +13,11 @@ resource "aws_vpc" "main" {
   }
 }
 
-resource "aws_subnet" "subnets" {
-  count = "$length(data.aws_availability_zones.azs.names)"
-  availability_zones = "$element(data.aws_availability_zones.azs.names,count.index)"
+resource "aws_subnet" "subnet1" {
   vpc_id     = "${aws_vpc.main.id}"
-  cidr_block = "$element(var.subnet_cidr,count.index)"
+  cidr_block = "${var.subnet_cidr}"
 
   tags = {
-    Name = "subnet-${count.index+1}"
+    Name = "subnet1"
   }
 }
