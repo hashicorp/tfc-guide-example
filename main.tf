@@ -1,28 +1,27 @@
 provider "aws" {
-  version = "2.33.0"
-
-  region = var.aws_region
+  access_key = "AKIATCINKSEDYRG5CCOB"
+  secret_key = "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"
+  region     = "${var.region}"
 }
 
-provider "random" {
-  version = "2.2"
-}
-
-resource "random_pet" "table_name" {}
-
-resource "aws_dynamodb_table" "tfc_example_table" {
-  name = "${var.db_table_name}-${random_pet.table_name.id}"
-
-  read_capacity  = var.db_read_capacity
-  write_capacity = var.db_write_capacity
-  hash_key       = "UUID"
-
-  attribute {
-    name = "UUID"
-    type = "S"
+## Create VPC ##
+resource "aws_vpc" "main" {
+  cidr_block = "${var.vpc_cidr}"
+  instance_tenancy ="default"
+  
+  tags = {
+    Name = "main"
+    Location = "Mumbai"
   }
+}
+
+resource "aws_subnet" "subnets" {
+  count = "${length(data.aws_availability_zones.azs.names)}"
+  availability_zones = "${element(data.aws_availability_zones.azs.names,count.index)}"
+  vpc_id     = "${aws_vpc.main.id}"
+  cidr_block = "${element(var.subnet_cidr,count.index)}"
 
   tags = {
-    user_name = var.tag_user_name
+    Name = "subnet-${count.index+1}"
   }
 }
