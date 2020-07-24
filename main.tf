@@ -16,10 +16,10 @@ resource "aws_vpc" "main" {
 }
 
 resource "aws_subnet" "subnets" {
-  count = "${length(data.aws_availability_zones.azs.names)}"
-  availability_zones = "${element(data.aws_availability_zones.azs.names,count.index)}"
+  count = "$length(data.aws_availability_zones.azs.names)"
+  availability_zones = "$element(data.aws_availability_zones.azs.names,count.index)"
   vpc_id     = "${aws_vpc.main.id}"
-  cidr_block = "${element(var.subnet_cidr,count.index)}"
+  cidr_block = "$element(var.subnet_cidr,count.index)"
 
   tags = {
     Name = "subnet-${count.index+1}"
