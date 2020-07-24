@@ -1,7 +1,9 @@
 provider "aws" {
-  version = "~> 2.0"
-  region  = "ap-south-1"
+  region     = "ap-south-1"
+  access_key = "AKIATCINKSEDYRG5CCOB"
+  secret_key = "qIY7DrjBQBwJH2ycXnQ/mok1hF2OZTuT+7iVq3fZ"
 }
+
 
 # Create a VPC
 resource "aws_vpc" "example" {
