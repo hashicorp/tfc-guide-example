@@ -1,7 +1,11 @@
 provider "aws" {
-  version = "2.33.0"
+  version = "~> 2.0"
+  region  = "ap-south-1c"
+}
 
-  region = var.aws_region
+# Create a VPC
+resource "aws_vpc" "example" {
+  cidr_block = "10.0.0.0/16"
 }
 
 provider "random" {
