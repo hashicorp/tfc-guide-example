@@ -1,7 +1,7 @@
 provider "aws" {
   version = "2.33.0"
 
-  region = var.aws_region
+  region = var.aws_west
 }
 
 resource "aws_dynamodb_table" "tfc_example_table" {
