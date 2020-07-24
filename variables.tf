@@ -27,4 +27,9 @@ variable "a_new_variable"{
 }
 
 
+variable "a_new_variables"{
+  default  = "nothings"
+}
+
 #this is test text for github
+#some more shit i gott try out
