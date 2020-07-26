@@ -1,8 +1,7 @@
 provider "aws" {
   version = "2.33.0"
 
-  region = var.aws_west 
-AWS_DEFAULT_REGION = "us-west-1"
+  region = var.aws_west
 }
 
 provider "random" {
