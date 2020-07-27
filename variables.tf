@@ -1,4 +1,4 @@
-variable "aws_region" {
+variable "aws_west" {
   type    = string
   default = "us-west-1"
 }
