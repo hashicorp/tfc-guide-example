@@ -1,34 +1,40 @@
 provider "aws" {
-  version = "2.33.0"
-
-  region = var.aws_south
+    region = "us-west-2"
 }
 
-provider "random" {
-  version = "2.2"
-}
+resource "aws_security_group" "default" {
+  name_prefix = "test_instance"
 
-resource "random_pet" "table_name" {}
-
-resource "aws_dynamodb_table" "tfc_example_table" {
-  name = "${var.db_table_name}-${random_pet.table_name.id}"
-
-  read_capacity  = var.db_read_capacity
-  write_capacity = var.db_write_capacity
-  hash_key       = "UUID"
-  range_key      = "UserName"
-
-  attribute {
-    name = "UUID"
-    type = "S"
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
-  attribute {
-    name = "UserName"
-    type = "S"
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   tags = {
-    user_name = var.tag_user_name
+    Created-by = "Terraform"
+    Identity   = "test_instance"
   }
+}
+
+resource "aws_instance" "web" {
+  ami           = "ami-c62eaabe"
+  instance_type = var.instance_type
+  
+  associate_public_ip_address = false
+
+  vpc_security_group_ids = [aws_security_group.default.id]
+
+  tags = {
+    Identity = "test_instance"
+  }
+
 }
