@@ -17,3 +17,7 @@ variable "db_write_capacity" {
   type    = number
   default = 1
 }
+
+variable "tag_user_name" {
+  type = string
+}
