@@ -17,3 +17,8 @@ variable "db_write_capacity" {
   type    = number
   default = 1
 }
+
+variable "environment" {
+  type    = string
+  default = "dev"
+}
