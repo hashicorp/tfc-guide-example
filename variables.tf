@@ -5,7 +5,7 @@ variable "aws_region" {
 
 variable "db_table_name" {
   type    = string
-  default = "noruntriggers"
+  default = "notriger_Add_team"
 }
 
 variable "db_read_capacity" {
