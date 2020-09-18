@@ -10,15 +10,9 @@ provider "random" {
 
 resource "random_pet" "table_name" {}
 
-resource "aws_dynamodb_table" "tfc_example_table" {
-  name = "${var.db_table_name}-${random_pet.table_name.id}"
+resource "aws_instance" "basic" {
+  ami           = "ami-0ee1a20d6b0c6a347"
+  instance_type = "t3.nano"
+}
 
-  read_capacity  = var.db_read_capacity
-  write_capacity = var.db_write_capacity
-  hash_key       = "UUID"
-
-  attribute {
-    name = "UUID"
-    type = "S"
-  }
 }
