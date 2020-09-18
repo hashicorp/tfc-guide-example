@@ -15,4 +15,4 @@ resource "aws_instance" "basic" {
   instance_type = "t3.nano"
 }
 
-}
+
