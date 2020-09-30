@@ -1,0 +1,12 @@
+name: Your Fork
+
+on: [pull_request]
+
+jobs:
+  greeting:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/first-interaction@v1
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        pr-message: 'Hi! If you are following the Terraform Cloud Get Staretd tutorial, please open the PR against [your personal fork](https://learn.hashicorp.com/tutorials/terraform/cloud-workspace-create?in=terraform/cloud-get-started#fork-a-github-repository) of this repository.'
