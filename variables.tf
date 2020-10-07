@@ -1,6 +1,6 @@
 variable "aws_region" {
   type    = string
-  default = "us-west-1"
+  default = "us-east-1"
 }
 
 variable "db_table_name" {
