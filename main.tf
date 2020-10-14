@@ -1,24 +1,29 @@
-provider "aws" {
-  version = "2.33.0"
-
-  region = var.aws_region
+provider "azurerm" {
+  # whilst the `version` attribute is optional, we recommend pinning to a given version of the Provider
+  version = "=2.20.0"
+  features {}
 }
 
-provider "random" {
-  version = "2.2"
+# Create a resource group
+resource "azurerm_resource_group" "dev-ddp-rg" {
+  name     = var.rg_name
+  location = "West Europe"
 }
 
-resource "random_pet" "table_name" {}
+# Create a virtual network within the resource group
+resource "azurerm_virtual_network" "dev-ddp-vnet" {
+  name                = var.vnet_name
+  resource_group_name = azurerm_resource_group.example.name
+  location            = azurerm_resource_group.example.location
+  address_space       = var.vnet_cidr_blocks
+}
 
-resource "aws_dynamodb_table" "tfc_example_table" {
-  name = "${var.db_table_name}-${random_pet.table_name.id}"
+resource "azurerm_subnet" "dev-ddp-sub-dbr-1" {
+  count                = 2
+  name                 = var.subnet_names[count.index]
+  resource_group_name  = azurerm_resource_group.example.name
+  virtual_network_name = azurerm_virtual_network.example.name
+  address_prefixes     = var.subnet_cidr_blocks[count.index]
 
-  read_capacity  = var.db_read_capacity
-  write_capacity = var.db_write_capacity
-  hash_key       = "UUID"
-
-  attribute {
-    name = "UUID"
-    type = "S"
-  }
+  service_endpoints = var.service_endpoints
 }
