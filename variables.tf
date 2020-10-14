@@ -19,7 +19,7 @@ variable "subnet_names" {
   default = ["dev-ddp-sub-dbr-1", "dev-ddp-sub-dbr-2"]
 }
 
-variable "subnet_cidr_blocks " {
+variable "subnet_cidr_blocks" {
   type    = list
   default = ["10.0.1.0/24", "10.0.7.0/24"]
 }
