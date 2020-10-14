@@ -23,7 +23,7 @@ resource "azurerm_subnet" "dev-ddp-sub-dbr-1" {
   name                 = var.subnet_names[count.index]
   resource_group_name  = azurerm_resource_group.dev-ddp-rg.name
   virtual_network_name = azurerm_virtual_network.dev-ddp-vnet.name
-  address_prefixes     = var.subnet_cidr_blocks[count.index]
+  address_prefixes     = [var.subnet_cidr_blocks[count.index]]
 
   service_endpoints = var.service_endpoints
 }
