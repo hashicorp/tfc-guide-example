@@ -191,3 +191,11 @@ resource "azurerm_network_security_group" "databricks-nsg" {
               }
   ]
 }
+
+resource "azurerm_databricks_workspace" "databricks" {
+  name                = "dev-ddp-dtbrcks"
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
+  sku                 = "standard"
+
+}
