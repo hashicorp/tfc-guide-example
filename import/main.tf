@@ -196,6 +196,13 @@ resource "azurerm_databricks_workspace" "databricks" {
   name                = "dev-ddp-dtbrcks"
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
-  sku                 = "standard"
-
+  sku                 = "trial"
+  custom_parameters= [
+              {
+                no_public_ip: true,
+                private_subnet_name: "databricks-private",
+                public_subnet_name: "databricks-public",
+                virtual_network_id: azurerm_virtual_network.vnet.id
+              }
+            ]
 }
