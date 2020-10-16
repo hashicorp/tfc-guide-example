@@ -22,3 +22,16 @@ module "subnet" {
   vnet_name          = module.vnet.vnet_name
 }
 
+# module "network_security_group" {
+#   source      = "../../modules/azure/network_security_group"
+#   rg_name     = module.resource_group.rg_name
+#   rg_location = module.resource_group.rg_location
+# }
+
+module "databricks_workspace" {
+  source       = "../../modules/azure/databricks"
+  rg_name      = module.resource_group.rg_name
+  rg_location  = module.resource_group.rg_location
+  subnet_names = module.subnet.subnet_names
+  vnet_id      = module.vnet.vnet_id
+}
