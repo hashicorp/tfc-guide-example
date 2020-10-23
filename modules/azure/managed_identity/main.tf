@@ -5,8 +5,6 @@ data "azurerm_subscription" "dev" {
 
 }
 
-data "azurerm_client_config" "current" {}
-
 resource "azurerm_user_assigned_identity" "databricks-uai" {
   resource_group_name = var.rg_name
   location            = var.rg_location
@@ -29,7 +27,7 @@ resource "azurerm_role_definition" "databricks-uai-role-definition" {
 }
 
 resource "azurerm_role_assignment" "databricks-role-assignment" {
-  name               = "00000000-0000-0000-0000-000000000000"
+  name               = "00000000-ffff-eeee-aaaa-000000000000"
   scope              = data.azurerm_subscription.dev.id
   role_definition_id = azurerm_role_definition.databricks-uai-role-definition.role_definition_resource_id
   principal_id       = azurerm_user_assigned_identity.databricks-uai.principal_id
