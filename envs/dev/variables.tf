@@ -29,3 +29,37 @@ variable "rg_name" {
 variable "rg_region" {
   type = string
 }
+
+variable "databricks_managed_identity_name" {
+  type = string
+}
+
+variable "adls_storage_account_name" {
+  type = string
+}
+
+variable "dbr_storage_account_name" {
+  type = string
+}
+
+variable "dbr_storage_container_name" {
+  type = string
+}
+
+variable "adls_account_tier" {
+  type = string
+}
+
+variable "adls_account_replication_type" {
+  type = string
+}
+
+variable "adls_account_kind" {
+  type = string
+}
+
+variable "adls_is_hns_enabled" {
+  type = string
+}
+
+
