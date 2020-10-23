@@ -31,6 +31,6 @@ resource "azurerm_role_definition" "databricks-uai-role-definition" {
 resource "azurerm_role_assignment" "databricks-role-assignment" {
   name               = "00000000-0000-0000-0000-000000000000"
   scope              = data.azurerm_subscription.dev.id
-  role_definition_id = azurerm_role_definition.databricks-uai-role-definition.role_definition_id
+  role_definition_id = azurerm_role_definition.databricks-uai-role-definition.role_definition_resource_id
   principal_id       = azurerm_user_assigned_identity.databricks-uai.principal_id
 }
