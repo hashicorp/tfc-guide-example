@@ -2,7 +2,7 @@ resource "azurerm_databricks_workspace" "databricks-ws" {
   name                = "databricks-test"
   resource_group_name = var.rg_name
   location            = var.rg_location
-  sku                 = "standard"
+  sku                 = "trial"
 
   custom_parameters {
     no_public_ip        = true
