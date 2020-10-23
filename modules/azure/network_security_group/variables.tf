@@ -5,3 +5,7 @@ variable "rg_name" {
 variable "rg_location" {
   type = string
 }
+
+variable "subnet_ids" {
+  type = list
+}

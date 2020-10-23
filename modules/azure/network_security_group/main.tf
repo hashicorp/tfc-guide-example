@@ -1,4 +1,4 @@
-resource "azurerm_network_security_group" "dbr_nsg" {
+resource "azurerm_network_security_group" "dbr-nsg" {
   name                = "acceptanceTestSecurityGroup1"
   location            = var.rg_location
   resource_group_name = var.rg_name
@@ -153,4 +153,10 @@ resource "azurerm_network_security_group" "dbr_nsg" {
   tags = {
     environment = "dev"
   }
+}
+
+resource "azurerm_subnet_network_security_group_association" "example" {
+  count = length(var.subnet_ids)
+  subnet_id                 = var.subnet_ids[count.index]
+  network_security_group_id = azurerm_network_security_group.dbr-nsg.id
 }

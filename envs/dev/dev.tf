@@ -26,6 +26,7 @@ module "network_security_group" {
   source      = "../../modules/azure/network_security_group"
   rg_name     = module.resource_group.rg_name
   rg_location = module.resource_group.rg_location
+  subnet_ids = module.subnet.subnet_ids
 }
 
 module "databricks_workspace" {
