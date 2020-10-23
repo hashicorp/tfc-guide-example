@@ -35,4 +35,5 @@ module "databricks_workspace" {
   rg_location  = module.resource_group.rg_location
   subnet_names = module.subnet.subnet_names
   vnet_id      = module.vnet.vnet_id
+  dbr_depends_on  = [module.network_security_group.nsg-association]
 }

@@ -14,4 +14,7 @@ resource "azurerm_databricks_workspace" "databricks-ws" {
   tags = {
     Environment = "dev"
   }
+
+  # need to add the NSG association with subnet as an indirect dependency
+  depends_on = [var.dbr_depends_on]
 }

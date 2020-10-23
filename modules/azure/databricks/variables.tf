@@ -14,3 +14,8 @@ variable "subnet_names" {
 variable "vnet_id" {
   type = string
 }
+
+# need to add the NSG association with subnet as an indirect dependency
+variable "dbr_depends_on" {
+  type = any
+}
