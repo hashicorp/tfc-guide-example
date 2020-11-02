@@ -22,19 +22,19 @@ module "subnet" {
   vnet_name          = module.vnet.vnet_name
 }
 
-module "network_security_group" {
-  source      = "../../modules/azure/network_security_group"
-  rg_name     = module.resource_group.rg_name
-  rg_location = module.resource_group.rg_location
-  subnet_ids  = module.subnet.subnet_ids
-}
+# module "network_security_group" {
+#   source      = "../../modules/azure/network_security_group"
+#   rg_name     = module.resource_group.rg_name
+#   rg_location = module.resource_group.rg_location
+#   subnet_ids  = module.subnet.subnet_ids
+# }
 
-module "managed_identity" {
-  source                           = "../../modules/azure/managed_identity"
-  rg_name                          = module.resource_group.rg_name
-  rg_location                      = module.resource_group.rg_location
-  databricks_managed_identity_name = var.databricks_managed_identity_name
-}
+# module "managed_identity" {
+#   source                           = "../../modules/azure/managed_identity"
+#   rg_name                          = module.resource_group.rg_name
+#   rg_location                      = module.resource_group.rg_location
+#   databricks_managed_identity_name = var.databricks_managed_identity_name
+# }
 
 module "storage_account" {
   source                     = "../../modules/azure/storage_account"
