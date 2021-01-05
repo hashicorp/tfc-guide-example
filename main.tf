@@ -3,6 +3,9 @@ terraform {
     aws = {
       version = "2.33.0"
     }
+    random = {
+      version = "2.2"
+    }
   }
 }
 
@@ -11,7 +14,7 @@ provider "aws" {
 }
 
 provider "random" {
-  version = "2.2"
+  
 }
 
 resource "random_pet" "table_name" {}
