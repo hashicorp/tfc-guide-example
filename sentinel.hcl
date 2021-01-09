@@ -1,3 +1,3 @@
 policy "allowed-terraform-version" {
-    enforcement_level = "hard-mandatory"
+    enforcement_level = "advisory"
 }
