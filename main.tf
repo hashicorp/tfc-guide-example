@@ -4,6 +4,14 @@ provider "aws" {
   region = var.aws_region
 }
 
+terraform {
+  backend "s3" {
+    bucket = "sublime-poc"
+    key    = "pg-tfc/"
+    region = "eu-west-1"
+  }
+}
+
 provider "random" {
   version = "2.2"
 }
