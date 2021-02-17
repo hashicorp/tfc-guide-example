@@ -7,7 +7,7 @@ provider "aws" {
 terraform {
   backend "s3" {
     bucket = "sublime-poc"
-    key    = "pg-tfc/"
+    key    = "pg-tfc/terraform.state"
     region = "eu-west-1"
   }
 }
