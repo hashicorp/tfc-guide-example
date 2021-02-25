@@ -20,6 +20,10 @@ jobs:
           terraform_version: 0.12.30
           cli_config_credentials_token: ${{ secrets.tf_token }}
 
+      - name: Terraform Workspace
+        id: workspace
+        run: terraform workspace select staging
+
       - name: Terraform Format
         id: fmt
         run: terraform fmt -check
