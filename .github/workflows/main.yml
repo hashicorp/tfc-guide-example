@@ -20,10 +20,6 @@ jobs:
           terraform_version: 0.12.30
           cli_config_credentials_token: ${{ secrets.tf_token }}
 
-      - name: Terraform Workspace
-        id: workspace
-        run: terraform workspace select staging
-
       - name: Terraform Format
         id: fmt
         run: terraform fmt -check
@@ -31,11 +27,15 @@ jobs:
       - name: Terraform Init
         id: init
         run: terraform init
+        env:
+          TF_WORKSPACE: staging
 
       - name: Terraform Plan
         id: plan
         if: github.event_name == 'pull_request'
         run: terraform plan -no-color
+        env:
+          TF_WORKSPACE: staging
         continue-on-error: true
 
       - uses: actions/github-script@0.9.0
