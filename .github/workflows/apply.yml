@@ -1,0 +1,43 @@
+name: "Terraform Apply"
+
+on:
+  workflow_dispatch:
+
+jobs:
+  terraform:
+    name: "Terraform"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1.3.2
+        with:
+          terraform_version: 0.12.30
+          cli_config_credentials_token: ${{ secrets.tf_token }}
+
+      - name: Terraform Format
+        id: fmt
+        run: terraform fmt -check
+
+      - name: Terraform Init
+        id: init
+        run: terraform init
+        env:
+          TF_WORKSPACE: staging
+
+      - name: Terraform Plan
+        id: plan
+        run: terraform plan -no-color
+        env:
+          TF_WORKSPACE: staging
+        continue-on-error: true
+
+      - name: Terraform Plan Status
+        if: steps.plan.outcome == 'failure'
+        run: exit 1
+
+    - name: Terraform Apply
+      id: apply
+      run: terraform apply -no-color
