@@ -5,10 +5,12 @@ provider "aws" {
 }
 
 terraform {
-  backend "s3" {
-    bucket = "sublime-poc"
-    key    = "pg-tfc/terraform.state"
-    region = "eu-west-1"
+  backend "remote" {
+    hostname     = "app.terraform.io"
+    organization = "Sublime"
+    workspaces {
+      prefix = "tfc-example-"
+    }
   }
 }
 
