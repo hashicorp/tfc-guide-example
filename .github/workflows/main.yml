@@ -1,4 +1,4 @@
-name: "Terraform"
+name: "Terraform Plan & Apply staging"
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
 
 jobs:
   terraform:
-    name: "Terraform"
+    name: "Terraform Plan & Apply staging"
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -68,3 +68,10 @@ jobs:
       - name: Terraform Plan Status
         if: steps.plan.outcome == 'failure'
         run: exit 1
+
+      - name: Terraform Apply
+        id: apply
+        if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+        run: terraform apply -auto-approve -no-color
+        env:
+          TF_WORKSPACE: staging
