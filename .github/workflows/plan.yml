@@ -1,9 +1,7 @@
-name: "Terraform Apply"
+name: "Terraform Plan"
 
 on:
-  push:
-    branches:
-      - master
+  pull_request:
 
 jobs:
   terraform-plan-staging:
@@ -68,43 +66,8 @@ jobs:
         if: steps.plan.outcome == 'failure'
         run: exit 1
 
-  terraform-apply-staging:
-    name: "Terraform Apply staging"
-    needs: terraform-plan-staging
-    environment:
-      name: apply-staging
-    env:
-      env_name: staging
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v1.3.2
-        with:
-          terraform_version: 0.12.30
-          cli_config_credentials_token: ${{ secrets.tf_token }}
-
-      - name: Terraform Format
-        id: fmt
-        run: terraform fmt -check
-
-      - name: Terraform Init
-        id: init
-        run: terraform init
-        env:
-          TF_WORKSPACE: ${{ env.env_name }}
-
-      - name: Terraform Apply
-        id: apply
-        run: terraform apply -auto-approve -no-color
-        env:
-          TF_WORKSPACE: ${{ env.env_name }}
-
   terraform-plan-production:
     name: "Terraform Plan production"
-    needs: terraform-apply-staging
     env:
       env_name: production
     runs-on: ubuntu-latest
@@ -145,7 +108,7 @@ jobs:
             #### Terraform Initialization ⚙️\`${{ steps.init.outcome }}\`
             #### Terraform Plan 📖\`${{ steps.plan.outcome }}\`
 
-            <details><summary>Show Plan</summary>
+            <details><summary>Show Plan ${{ env.env_name }}</summary>
 
             \`\`\`${process.env.PLAN}\`\`\`
 
@@ -164,37 +127,3 @@ jobs:
       - name: Terraform Plan Status
         if: steps.plan.outcome == 'failure'
         run: exit 1
-
-  terraform-apply-production:
-    name: "Terraform Apply staging"
-    needs: terraform-plan-production
-    environment:
-      name: apply-production
-    env:
-      env_name: production
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v1.3.2
-        with:
-          terraform_version: 0.12.30
-          cli_config_credentials_token: ${{ secrets.tf_token }}
-
-      - name: Terraform Format
-        id: fmt
-        run: terraform fmt -check
-
-      - name: Terraform Init
-        id: init
-        run: terraform init
-        env:
-          TF_WORKSPACE: ${{ env.env_name }}
-
-      - name: Terraform Apply
-        id: apply
-        run: terraform apply -auto-approve -no-color
-        env:
-          TF_WORKSPACE: ${{ env.env_name }}
