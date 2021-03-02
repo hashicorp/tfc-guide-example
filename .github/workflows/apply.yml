@@ -72,7 +72,7 @@ jobs:
 
       - name: Terraform Apply
         id: apply
-        run: terraform apply -auto-approve -no-color
+        run: terraform apply -no-color
         env:
           TF_WORKSPACE: ${{ env.env_name }}
 
