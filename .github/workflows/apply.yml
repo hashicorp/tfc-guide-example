@@ -114,7 +114,7 @@ jobs:
         run: exit 1
 
   terraform-apply-production:
-    name: "Terraform Apply staging"
+    name: "Terraform Apply production"
     needs: terraform-plan-production
     environment:
       name: apply-production
