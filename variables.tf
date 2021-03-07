@@ -3,6 +3,10 @@ variable "aws_region" {
   default = "us-west-1"
 }
 
+variable "aws_assume_role" {
+  type    = string
+}
+
 variable "db_table_name" {
   type    = string
   default = "terraform-learn"

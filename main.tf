@@ -1,5 +1,6 @@
 provider "aws" {
   region = var.aws_region
+  assume_role = var.aws_assume_role
 }
 
 provider "random" {}
