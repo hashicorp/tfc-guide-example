@@ -5,7 +5,7 @@ variable "aws_region" {
 
 variable "db_table_name" {
   type    = string
-  default = "ram"
+  default = "daft"
 }
 
 variable "db_read_capacity" {
