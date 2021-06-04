@@ -1,3 +1,3 @@
-output "tfc_example_table_arn" {
-  value = aws_dynamodb_table.tfc_example_table.arn
+output "cluster_identifier" {
+  value = aws_rds_cluster.clone.id
 }
