@@ -1,3 +1,12 @@
+terraform {
+  backend "remote" {
+    organization = "kustomer"
+
+    workspaces {
+      name = "tfc-guide-example"
+    }
+  }
+}
 provider "aws" {
   region = var.aws_region
 }
