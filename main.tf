@@ -1,8 +1,18 @@
 provider "aws" {
+  profile = "default"
   region = var.aws_region
 }
 
 provider "random" {}
+
+resource "aws_instance" "app_server" {
+  ami           = "ami-08d70e59c07c61a3a"
+  instance_type = "t2.micro"
+
+  tags = {
+    Name = var.instance_name
+  }
+}
 
 resource "random_pet" "table_name" {}
 
