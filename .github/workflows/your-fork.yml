@@ -1,0 +1,17 @@
+name: Your Fork
+
+on:
+  pull_request_target:
+    types: [opened]
+
+jobs:
+  close:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Automatically close pull requests
+      if: ${{ github.repository.name }} == 'hashicorp/tfc-guide-example'
+      uses: superbrothers/close-pull-request@v3
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        # Optional. Post a issue comment just before closing a pull request.
+        comment: "Hi! If you are following the Terraform Cloud Get Started tutorial, please open the PR against [your personal fork](https://learn.hashicorp.com/tutorials/terraform/cloud-workspace-create?in=terraform/cloud-get-started#fork-a-github-repository) of this repository. We will automatically close this PR, but if you intended to edit the example itself, please add a comment and we will review it as soon as possible."
