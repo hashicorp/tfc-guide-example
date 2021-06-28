@@ -1,20 +1,28 @@
 provider "aws" {
-  region = var.aws_region
+  region = var.region
 }
 
-provider "random" {}
+data "aws_ami" "ubuntu" {
+  most_recent = true
 
-resource "random_pet" "table_name" {}
+  filter {
+    name   = "name"
+    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
+  }
 
-resource "aws_dynamodb_table" "tfc_example_table" {
-  name = "${var.db_table_name}-${random_pet.table_name.id}"
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
 
-  read_capacity  = var.db_read_capacity
-  write_capacity = var.db_write_capacity
-  hash_key       = "UUID"
+  owners = ["099720109477"] # Canonical
+}
 
-  attribute {
-    name = "UUID"
-    type = "S"
+resource "aws_instance" "ubuntu" {
+  ami           = data.aws_ami.ubuntu.id
+  instance_type = var.instance_type
+
+  tags = {
+    Name = var.instance_name
   }
 }
