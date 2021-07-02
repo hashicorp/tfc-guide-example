@@ -26,6 +26,6 @@ resource "aws_dynamodb_table" "tfc_example_table" {
 
 tags = {
      
-        Environment = "Prod"
+        Environment = "Prd"
   }
 }
