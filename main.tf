@@ -20,5 +20,12 @@ resource "aws_dynamodb_table" "tfc_example_table" {
   attribute {
     name = "UUID"
     type = "S"
+    
+     
+}
+
+tags = {
+     
+        Environment = "Prod"
   }
 }
