@@ -1,6 +1,6 @@
 variable "region" {
   description = "AWS region"
-  default     = "ap-south-1a"
+  default     = "ap-south-1"
 }
 
 variable "instance_type" {
