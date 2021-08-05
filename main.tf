@@ -1,5 +1,7 @@
 provider "aws" {
   region = var.region
+  # Personal *not* work credentials, requires this to be set up in ~/.aws
+  profile = "personal"
 }
 
 data "aws_ami" "ubuntu" {
@@ -26,3 +28,5 @@ resource "aws_instance" "ubuntu" {
     Name = var.instance_name
   }
 }
+
+data "aws_caller_identity" "current" {}
