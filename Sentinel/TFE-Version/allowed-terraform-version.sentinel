@@ -1,5 +1,5 @@
 import "tfplan"
 
 main = rule {
-  tfplan.terraform_version matches "^(0\\.1(4|5)|1\\.0)\\.\\d+$"
+  tfplan.terraform_version matches "1.06"
 }
