@@ -1,4 +1,0 @@
-# This content is referenced on learn.hashicorp.com
-# and needs review before merges as that content may break. 
-*.tf @hashicorp/terraform-education @mikenomitch
-*.md @hashicorp/terraform-education @mikenomitch
