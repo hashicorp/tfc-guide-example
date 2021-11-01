@@ -1,9 +1,9 @@
 output "instance_ami" {
-  value = aws_instance.ubuntu.ami
+  value = aws_instance.ubuntu1.ami
 }
 
 output "instance_arn" {
-  value = aws_instance.ubuntu.arn
+  value = aws_instance.ubuntu1.arn
 }
 
 output "aws_region" {
