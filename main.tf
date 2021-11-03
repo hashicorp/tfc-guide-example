@@ -18,36 +18,6 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"] # Canonical
 }
 
-resource "aws_instance" "ubuntu1" {
-  ami           = data.aws_ami.ubuntu.id
-  instance_type = var.instance_type
-  vpc_security_group_id = aws_security_group.Diplom.id
-
-  tags = {
-    Name = "node1"
-  }
-}
-
-resource "aws_instance" "ubuntu2" {
-  ami           = data.aws_ami.ubuntu.id
-  instance_type = var.instance_type
-  vpc_security_group_id = aws_security_group.Diplom.id
-
-  tags = {
-    Name = "node2"
-  }
-}
-
-resource "aws_instance" "ubuntu3" {
-  ami           = data.aws_ami.ubuntu.id
-  instance_type = var.instance_type
-  vpc_security_group_id = aws_security_group.Diplom.id
-
-  tags = {
-    Name = "node3"
-  }
-}
-
 data "aws_region" "current" {}
 
 data "aws_instance" "ubuntu1" {
@@ -81,19 +51,17 @@ module "vpc" {
   }
 }
 
-resource "aws_security_group" "Diplom" {
+resource "aws_security_group" "diplom" {
   name        = "Diplom"
   description = "Allow TLS,SSH,HTTP inbound traffic"
-  vpc_id      = aws_vpc.diplom-vpc.id
-
+ 
   ingress = [
     {
       description      = "TLS from VPC"
       from_port        = 443
       to_port          = 443
       protocol         = "tcp"
-      cidr_blocks      = [aws_vpc.diplpm-vpc.cidr_block]
-      ipv6_cidr_blocks = [aws_vpc.diplom-vpc.ipv6_cidr_block]
+      cidr_blocks      = ["10.0.101.0/24","10.0.102.0/24", "10.0.103.0/24" ]
     } 
     ,
    
@@ -102,8 +70,7 @@ resource "aws_security_group" "Diplom" {
       from_port        = 22
       to_port          = 22
       protocol         = "tcp"
-      cidr_blocks      = [aws_vpc.diplpm-vpc.cidr_block]
-      ipv6_cidr_blocks = [aws_vpc.diplom-vpc.ipv6_cidr_block]
+      cidr_blocks      = ["10.0.101.0/24","10.0.102.0/24", "10.0.103.0/24" ]
     }
     ,
 
@@ -112,8 +79,7 @@ resource "aws_security_group" "Diplom" {
       from_port        = 80
       to_port          = 80
       protocol         = "tcp"
-      cidr_blocks      = [aws_vpc.diplpm-vpc.cidr_block]
-      ipv6_cidr_blocks = [aws_vpc.diplom-vpc.ipv6_cidr_block]
+      cidr_blocks      = ["10.0.101.0/24","10.0.102.0/24", "10.0.103.0/24" ]
     }
 
   ] 
@@ -130,5 +96,35 @@ resource "aws_security_group" "Diplom" {
 
   tags = {
     Name = "allov_ssh_http_tsl"
+  }
+}
+
+resource "aws_instance" "ubuntu1" {
+  ami           = data.aws_ami.ubuntu.id
+  instance_type = var.instance_type
+  vpc_security_group_ids = aws_security_group.diplom.id
+
+  tags = {
+    Name = "node1"
+  }
+}
+
+resource "aws_instance" "ubuntu2" {
+  ami           = data.aws_ami.ubuntu.id
+  instance_type = var.instance_type
+  vpc_security_group_ids = aws_security_group.diplom.id
+
+  tags = {
+    Name = "node2"
+  }
+}
+
+resource "aws_instance" "ubuntu3" {
+  ami           = data.aws_ami.ubuntu.id
+  instance_type = var.instance_type
+  vpc_security_group_ids = aws_security_group.diplom.id
+
+  tags = {
+    Name = "node3"
   }
 }
