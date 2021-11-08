@@ -62,6 +62,10 @@ resource "aws_security_group" "diplom" {
       to_port          = 443
       protocol         = "tcp"
       cidr_blocks      = ["10.0.101.0/24","10.0.102.0/24", "10.0.103.0/24" ]
+      ipv6_cidr_blocks = []
+      prefix_list_ids = []
+      security_groups = []
+      self = false
     } 
     ,
    
@@ -71,6 +75,10 @@ resource "aws_security_group" "diplom" {
       to_port          = 22
       protocol         = "tcp"
       cidr_blocks      = ["10.0.101.0/24","10.0.102.0/24", "10.0.103.0/24" ]
+      ipv6_cidr_blocks = []
+      prefix_list_ids = []
+      security_groups = []
+      self = false
     }
     ,
 
@@ -80,6 +88,10 @@ resource "aws_security_group" "diplom" {
       to_port          = 80
       protocol         = "tcp"
       cidr_blocks      = ["10.0.101.0/24","10.0.102.0/24", "10.0.103.0/24" ]
+      ipv6_cidr_blocks = []
+      prefix_list_ids = []
+      security_groups = []
+      self = false
     }
 
   ] 
@@ -91,6 +103,9 @@ resource "aws_security_group" "diplom" {
       protocol         = "-1"
       cidr_blocks      = ["0.0.0.0/0"]
       ipv6_cidr_blocks = ["::/0"]
+      prefix_list_ids = []
+      security_groups = []
+      self = false
     }
   ]
 
