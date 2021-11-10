@@ -39,15 +39,19 @@ module "vpc" {
   cidr = "10.0.0.0/16"
 
   azs             = ["${var.region}a", "${var.region}c"]
-  private_subnets = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24" ]
-  public_subnets  = ["10.0.101.0/24","10.0.102.0/24", "10.0.103.0/24" ]
+  private_subnets = ["10.0.1.0/24", "10.0.3.0/24" ]
+  public_subnets  = ["10.0.101.0/24", "10.0.103.0/24" ]
 
-  enable_nat_gateway = true
+  enable_nat_gateway = false
+  single_nat_gateway = true
   enable_vpn_gateway = true
 
   tags = {
     Terraform = "true"
     Environment = "dev"
+  }  
+  vpc_tags = {
+    Name = "vpc-name"
   }
 }
 
@@ -61,7 +65,7 @@ resource "aws_security_group" "diplom" {
       from_port        = 443
       to_port          = 443
       protocol         = "tcp"
-      cidr_blocks      = ["10.0.101.0/24","10.0.102.0/24", "10.0.103.0/24" ]
+      cidr_blocks      = ["10.0.101.0/24", "10.0.103.0/24" ]
       ipv6_cidr_blocks = []
       prefix_list_ids = []
       security_groups = []
@@ -74,7 +78,7 @@ resource "aws_security_group" "diplom" {
       from_port        = 22
       to_port          = 22
       protocol         = "tcp"
-      cidr_blocks      = ["10.0.101.0/24","10.0.102.0/24", "10.0.103.0/24" ]
+      cidr_blocks      = ["10.0.101.0/24", "10.0.103.0/24" ]
       ipv6_cidr_blocks = []
       prefix_list_ids = []
       security_groups = []
@@ -87,7 +91,7 @@ resource "aws_security_group" "diplom" {
       from_port        = 80
       to_port          = 80
       protocol         = "tcp"
-      cidr_blocks      = ["10.0.101.0/24","10.0.102.0/24", "10.0.103.0/24" ]
+      cidr_blocks      = ["10.0.101.0/24", "10.0.103.0/24" ]
       ipv6_cidr_blocks = []
       prefix_list_ids = []
       security_groups = []
@@ -129,6 +133,7 @@ resource "aws_instance" "ubuntu2" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = var.instance_type
   vpc_security_group_ids = [aws_security_group.diplom.id]
+  
 
   tags = {
     Name = "node2"
