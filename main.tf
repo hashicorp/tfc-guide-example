@@ -42,8 +42,7 @@ module "vpc" {
   private_subnets = ["10.0.1.0/24", "10.0.3.0/24" ]
   public_subnets  = ["10.0.101.0/24", "10.0.103.0/24" ]
 
-  enable_nat_gateway = false
-  single_nat_gateway = true
+  enable_nat_gateway = true
   enable_vpn_gateway = true
 
   tags = {
@@ -123,6 +122,7 @@ resource "aws_instance" "ubuntu1" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = var.instance_type
   vpc_security_group_ids = [aws_security_group.diplom.id]
+  subnet_id = module.public_subnets.id
 
   tags = {
     Name = "node1"
@@ -133,7 +133,7 @@ resource "aws_instance" "ubuntu2" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = var.instance_type
   vpc_security_group_ids = [aws_security_group.diplom.id]
-  
+  subnet_id = module.public_subnets.id
 
   tags = {
     Name = "node2"
@@ -144,7 +144,8 @@ resource "aws_instance" "ubuntu3" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = var.instance_type
   vpc_security_group_ids = [aws_security_group.diplom.id]
-
+  subnet_id = module.public_subnets.id
+  
   tags = {
     Name = "node3"
   }
