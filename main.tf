@@ -122,7 +122,7 @@ resource "aws_instance" "ubuntu1" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = var.instance_type
   vpc_security_group_ids = [aws_security_group.diplom.id]
-  subnet_id = module.vps.public_subnets.id
+  subnet_id = module.vpc.public_subnets.id
 
   tags = {
     Name = "node1"
@@ -133,7 +133,7 @@ resource "aws_instance" "ubuntu2" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = var.instance_type
   vpc_security_group_ids = [aws_security_group.diplom.id]
-  subnet_id = module.vps.public_subnets.id
+  subnet_id = module.vpc.public_subnets.id
 
   tags = {
     Name = "node2"
@@ -144,7 +144,7 @@ resource "aws_instance" "ubuntu3" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = var.instance_type
   vpc_security_group_ids = [aws_security_group.diplom.id]
-  subnet_id = module.vps.public_subnets.id
+  subnet_id = module.vpc.public_subnets.id
 
   tags = {
     Name = "node3"
