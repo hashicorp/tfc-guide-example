@@ -1,5 +1,6 @@
 provider "aws" {
-  region = var.region
+  region  = var.region
+  profile = "terraformGM"
 }
 
 data "aws_ami" "ubuntu" {
