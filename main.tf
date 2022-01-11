@@ -1,3 +1,13 @@
+terraform {
+  cloud {
+    organization = "jnewton"
+
+    workspaces {
+      name = "tfc-guide-example"
+    }
+  }
+}
+
 provider "aws" {
   region = var.region
 }
