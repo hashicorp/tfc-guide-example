@@ -3,7 +3,7 @@ data "terraform_remote_state" "vpc" {
   config = {
     organization = "example-org-adedf3"
     workspaces = {
-      name = "ws-7eGGZtsFCzHxcFgV"
+      name = "tfc-guide-example"
     }
   }
 }
