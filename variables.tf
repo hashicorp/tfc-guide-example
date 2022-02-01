@@ -13,3 +13,7 @@ variable "instance_name" {
   default     = "Provisioned by Terraform"
 }
 
+
+variable "provider_token" {
+  description = "fakewebservices provider token"
+}
