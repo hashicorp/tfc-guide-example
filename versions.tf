@@ -1,9 +1,6 @@
 terraform {
   required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 3.28.0"
-    }
+    fakewebservices = "~> 0.1"
 
     random = {
       source  = "hashicorp/random"

@@ -1,8 +1,8 @@
-output "instance_ami" {
-  value = aws_instance.ubuntu.ami
+output "fakewebservices_vpc_name" {
+  value = fakewebservices_vpc.primary_vpc.name
 }
 
-output "instance_arn" {
-  value = aws_instance.ubuntu.arn
+output "fakewebservices_server_server_0" {
+  value = fakewebservices_server.servers[0]
 }
 

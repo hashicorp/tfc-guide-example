@@ -1,28 +1,26 @@
-provider "aws" {
-  region = var.region
+provider "fakewebservices" {
+  token = var.provider_token
 }
 
-data "aws_ami" "ubuntu" {
-  most_recent = true
-
-  filter {
-    name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
-  }
-
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
-  }
-
-  owners = ["099720109477"] # Canonical
+resource "fakewebservices_vpc" "primary_vpc" {
+  name = "Primary VPC"
+  cidr_block = "0.0.0.0/1"
 }
 
-resource "aws_instance" "ubuntu" {
-  ami           = data.aws_ami.ubuntu.id
-  instance_type = var.instance_type
+resource "fakewebservices_server" "servers" {
+  count = 2
 
-  tags = {
-    Name = var.instance_name
-  }
+  name = "Server ${count.index+1}"
+  type = "t2.micro"
+  vpc = fakewebservices_vpc.primary_vpc.name
+}
+
+resource "fakewebservices_load_balancer" "primary_lb" {
+  name = "Primary Load Balancer"
+  servers = fakewebservices_server.servers[*].name
+}
+
+resource "fakewebservices_database" "prod_db" {
+  name = "Production DB"
+  size = 256
 }
