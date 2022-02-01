@@ -8,5 +8,12 @@ terraform {
     }
   }
 
+  backend "remote" {
+    organization = "example-org-adedf3"
+    workspaces {
+      name = "tfc-guide-example"
+    }
+  }
+
   required_version = ">= 0.14.0"
 }
