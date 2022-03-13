@@ -1,5 +1,14 @@
+variable "AWS_ACCESS_KEY_ID" {}
+variable "AWS_SECRET_ACCESS_KEY" {}
+variable "region" {
+  default = "ap-northeast-1"
+}
+
+
 provider "aws" {
-  region = var.region
+  access_key = var.aws_access_key
+  secret_key = var.aws_secret_key
+  region     = var.region
 }
 
 data "aws_ami" "ubuntu" {
