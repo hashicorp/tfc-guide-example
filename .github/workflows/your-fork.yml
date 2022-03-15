@@ -19,6 +19,6 @@ jobs:
         fork](https://learn.hashicorp.com/tutorials/terraform/cloud-workspace-create?in=terraform/cloud-get-started#fork-a-github-repository)
         of this repository. ![Screenshot showing how to change the fork your PR
         is against. Type your GitHub user name into the search bar to find your
-        fork of the example repo.](../github_tfc-guide-example_create_pull_request.png) We will automatically close this PR, but if you
+        fork of the example repo.](https://github.com/hashicorp/tfc-guide-example/blob/master/.github/github_tfc-guide-example_create_pull_request.png) We will automatically close this PR, but if you
         intended to edit the example itself, please add a comment and we will
         review it as soon as possible."
