@@ -10,6 +10,11 @@ variable "instance_type" {
 
 variable "instance_name" {
   description = "EC2 instance name"
-  default     = "Provisioned by Terraform"
+  default     = "example-01"
+}
+
+variable "owned_by" {
+  description = "Owned_by"
+  default     = "kahoru.hagiya@hashicorp.com"
 }
 
