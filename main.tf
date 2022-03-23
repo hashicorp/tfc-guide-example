@@ -24,7 +24,7 @@ resource "aws_instance" "ubuntu" {
 
   tags = {
     Name                 = var.instance_name
-    "Linux Distribution used" = "Ubuntu, second time"
+    "Linux Distribution used" = "Ubuntu, hope everything works now"
     Ownedby             = var.owned_by
   }
 }
