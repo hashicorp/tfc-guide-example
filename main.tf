@@ -26,3 +26,9 @@ resource "aws_instance" "ubuntu" {
     Name = var.instance_name
   }
 }
+
+resource "aws_s3_bucket" "public-bucket" {
+  bucket = "my-public-bucket"
+  acl    = "public-read"
+}
+
