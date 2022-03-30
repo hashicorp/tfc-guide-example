@@ -28,7 +28,7 @@ resource "aws_instance" "ubuntu" {
 }
 
 resource "aws_s3_bucket" "public-bucket" {
-  bucket = "my-public-bucket"
+  bucket_prefix = "my-public-bucket"
   acl    = "public-read"
 }
 
