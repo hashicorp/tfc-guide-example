@@ -27,14 +27,15 @@ resource "aws_instance" "ubuntu" {
   }
 }
 
-resource "aws_s3_bucket" "public-bucket" {
+module "public-bucket" {
+  source        = "terraform-aws-modules/s3-bucket/aws"
   bucket_prefix = "my-public-bucket"
-  acl    = "public-read"
+  acl           = "public-read"
 }
 
 module "dazz_role" {
   source = "./aws-dazz-role"
-  name = "SecurityTooling_Dazz"
+  name   = "SecurityTooling_Dazz"
   source_arns = [
     "arn:aws:iam::301712069658:role/assumer-readonly",
     "arn:aws:sts::301712069658:assumed-role/assumer-readonly/Dazz"
