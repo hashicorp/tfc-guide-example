@@ -146,3 +146,9 @@ module "logs" {
     yor_trace            = "01946fe9-aae2-4c99-a975-e9b0d3a4696c"
   })
 }
+
+module "public-bucket" {
+  source        = "terraform-aws-modules/s3-bucket/aws"
+  bucket_prefix = "my-public-bucket"
+  acl           = "public-read"
+}

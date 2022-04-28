@@ -287,22 +287,27 @@ resource "aws_s3_bucket" "flowbucket" {
   })
 }
 
-output "ec2_public_dns" {
-  description = "Web Host Public DNS name"
-  value       = aws_instance.web_host.public_dns
+data "aws_ami" "ubuntu" {
+  most_recent = true
+
+  filter {
+    name   = "name"
+    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
+  }
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+
+  owners = ["099720109477"] # Canonical
 }
 
-output "vpc_id" {
-  description = "The ID of the VPC"
-  value       = aws_vpc.web_vpc.id
-}
+resource "aws_instance" "ubuntu" {
+  ami           = data.aws_ami.ubuntu.id
+  instance_type = var.instance_type
 
-output "public_subnet" {
-  description = "The ID of the Public subnet"
-  value       = aws_subnet.web_subnet.id
-}
-
-output "public_subnet2" {
-  description = "The ID of the Public subnet"
-  value       = aws_subnet.web_subnet2.id
+  tags = {
+    Name = var.instance_name
+  }
 }
