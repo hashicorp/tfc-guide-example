@@ -1,6 +1,6 @@
 module "asg" {
   source = "app.terraform.io/ACME_Demo/asg/aws"
-  version = "2.8.9"
+  version = "2.8.10"
 
   name = "asg_demo"
 
