@@ -1,6 +1,6 @@
 module "asg" {
   source = "app.terraform.io/ACME_Demo/asg/aws"
-  version = "2.8.14"
+  version = "2.8.15"
 
   name = "asg_demo"
 
@@ -48,9 +48,4 @@ module "asg" {
       propagate_at_launch = true
     },
   ]
-
-  tags_as_map = {
-    extra_tag1 = "extra_value1"
-    extra_tag2 = "extra_value2"
-  }
 }
