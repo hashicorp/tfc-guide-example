@@ -1,6 +1,6 @@
 module "asg" {
   source = "app.terraform.io/ACME_Demo/asg/aws"
-  version = "2.8.7"
+  version = "2.8.8"
 
   name = "asg_demo"
 
@@ -29,7 +29,7 @@ module "asg" {
 
   # Auto scaling group
   asg_name                  = "acme-asg-demo"
-  vpc_zone_identifier       = ["${data.aws_subnet_ids.all.ids}"]
+  vpc_zone_identifier       = data.aws_subnet_ids.all.ids
   health_check_type         = "EC2"
   min_size                  = 0
   max_size                  = 1
