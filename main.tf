@@ -29,6 +29,10 @@ resource "aws_instance" "ubuntu" {
   tags = {
     Name = var.instance_name
   }
+
+    depends_on = [
+      aws_security_group.allow_office
+    ]
 }
 
 resource "aws_security_group" "allow_office" {
