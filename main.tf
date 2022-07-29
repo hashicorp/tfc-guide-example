@@ -22,7 +22,7 @@ resource "aws_instance" "ubuntu" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = var.instance_type
 
-  security_groups = [
+  vpc_security_group_ids = [
     aws_security_group.allow_office.id
   ]
 
@@ -42,7 +42,7 @@ resource "aws_security_group" "allow_office" {
 
   ingress {
     description       = "SSH from Office"
-    from_port         = 0
+    from_port         = 22 
     to_port           = 22
     protocol          = "tcp"
     cidr_blocks       = [
