@@ -13,3 +13,7 @@ variable "instance_name" {
   default     = "Provisioned by Terraform"
 }
 
+variable "availability_zone" {
+     type = string
+     default = "eu-west-1a"
+}
