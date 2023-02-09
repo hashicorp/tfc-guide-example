@@ -33,4 +33,5 @@ resource "aws_instance" "ubuntu_1" {
 
   tags = {
     Name = var.instance_name
+  }
 }
