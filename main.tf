@@ -1,4 +1,4 @@
-# Copyright (c) HashiCorp, Inc.
+# Copyright (c) HashiCorp, Inc.1
 # SPDX-License-Identifier: MPL-2.0
 
 provider "aws" {
