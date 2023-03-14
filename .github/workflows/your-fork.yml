@@ -6,17 +6,11 @@ on:
 
 jobs:
   close:
+    if: github.repository == 'david30907d/tfc-guide-example'
     runs-on: ubuntu-latest
     steps:
-    - name: Automatically close pull requests
-      if: ${{ github.repository.name }} == 'hashicorp/tfc-guide-example'
-      uses: superbrothers/close-pull-request@v3
+    - uses: superbrothers/close-pull-request@v3
       with:
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}
         # Optional. Post a issue comment just before closing a pull request.
-        comment: "Hi! If you are following the Terraform Cloud Get Started
-        tutorial, please open the PR against [your personal
-        fork](https://learn.hashicorp.com/tutorials/terraform/cloud-workspace-create?in=terraform/cloud-get-started#fork-a-github-repository)
-        of this repository. We will automatically close this PR, but if you
-        intended to edit the example itself, please add a comment and we will
-        review it as soon as possible."
+        comment: "Hi! If you are following the Terraform GitHub Actions tutorial, please open the PR against [your personal fork](https://learn.hashicorp.com/tutorials/terraform/github-actions?in=terraform/automation#set-up-a-github-repository) of this repository. We will automatically close this PR, but if you intended to edit the example itself please feel free to re-open it."
