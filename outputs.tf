@@ -1,11 +1,7 @@
 # Copyright (c) HashiCorp, Inc.
 # SPDX-License-Identifier: MPL-2.0
 
-output "instance_ami" {
-  value = aws_instance.ubuntu.ami
+output "host" {
+ description = "The IP address of the instance."
+ value = "${google_redis_instance.my_memorystore_redis_instance.host}"
 }
-
-output "instance_arn" {
-  value = aws_instance.ubuntu.arn
-}
-

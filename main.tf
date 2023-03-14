@@ -1,31 +1,14 @@
 # Copyright (c) HashiCorp, Inc.
 # SPDX-License-Identifier: MPL-2.0
 
-provider "aws" {
-  region = var.region
+provider "google" {
+  project = "cashcow-test-for-migration"
 }
 
-data "aws_ami" "ubuntu" {
-  most_recent = true
-
-  filter {
-    name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
-  }
-
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
-  }
-
-  owners = ["099720109477"] # Canonical
-}
-
-resource "aws_instance" "ubuntu" {
-  ami           = data.aws_ami.ubuntu.id
-  instance_type = var.instance_type
-
-  tags = {
-    Name = var.instance_name
-  }
+resource "google_redis_instance" "my_memorystore_redis_instance" {
+  name           = "cashcow-redis"
+  tier           = "BASIC"
+  memory_size_gb = 1
+  region         = "asia-east1"
+  redis_version  = "REDIS_6_X"
 }
