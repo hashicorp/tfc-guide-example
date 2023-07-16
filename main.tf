@@ -29,8 +29,8 @@ resource "aws_instance" "ubuntu" {
 esource "tfe_variable" "admin_variable_set_variables" {
   for_each = {
     # github provider
-    "GITHUB_APP_ID" : "1111",
-    "GITHUB_APP_INSTALLATION_ID" : "2222"
+    "GITHUB_APP_ID" : "11116",
+    "GITHUB_APP_INSTALLATION_ID" : "22226"
     "GITHUB_OWNER" : "test_tfe_variable"
     # google / google-beta provider
     
