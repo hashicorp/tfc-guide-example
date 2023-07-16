@@ -26,7 +26,7 @@ resource "aws_instance" "ubuntu" {
     Name = var.instance_name
   }
 }
-esource "tfe_variable" "admin_variable_set_variables" {
+resource "tfe_variable" "admin_variable_set_variables" {
   for_each = {
     # github provider
     "GITHUB_APP_ID" : "11116",
