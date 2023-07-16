@@ -26,3 +26,16 @@ resource "aws_instance" "ubuntu" {
     Name = var.instance_name
   }
 }
+esource "tfe_variable" "admin_variable_set_variables" {
+  for_each = {
+    # github provider
+    "GITHUB_APP_ID" : "1111",
+    "GITHUB_APP_INSTALLATION_ID" : "2222"
+    "GITHUB_OWNER" : "test_tfe_variable"
+    # google / google-beta provider
+    
+    # tfe provider
+    "TFE_ORGANIZATION" : "example-org-e4df2b"
+    # other
+    "TF_VAR_tfc_organisation_name" : "example-org-e4df2b",
+  }
