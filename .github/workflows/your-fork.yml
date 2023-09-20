@@ -10,7 +10,7 @@ jobs:
     steps:
     - name: Automatically close pull requests
       if: ${{ github.repository.name }} == 'hashicorp/tfc-guide-example'
-      uses: superbrothers/close-pull-request@v3
+      uses: superbrothers/close-pull-request@v3 # TSCCR: no entry for action: "superbrothers/close-pull-request"
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         # Optional. Post a issue comment just before closing a pull request.
